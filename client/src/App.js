@@ -6,49 +6,86 @@ function App() {
   const [peopleList, setPeopleList] = useState([]);
   const [planetList, setPlanetList] = useState([]);
   const [starshipList, setStarshipList] = useState([]);
-  const [personList, setPersonList] = useState([]);
+  const [peopleFoundList, setPeopleFoundList] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [showPeople, setShowPeople] = useState(false);
+  const [showPeopleFound, setShowPeopleFound] = useState(false);
+  const [showPlanets, setShowPlanets] = useState(false);
+  const [showStarships, setShowStarships] = useState(false);
+  const BASE_URL = "http://localhost:3001/api/"; 
 
+  //Fetching the lists of people, planets, starships
   useEffect(() => { 
-    axios.get("http://localhost:3001/api/people").then((response) => {
+    axios.get(`${BASE_URL}people`).then((response) => {
         setPeopleList(response.data);   
     }); 
-    axios.get("http://localhost:3001/api/planets").then((response) => {
+    axios.get(`${BASE_URL}planets`).then((response) => {
         setPlanetList(response.data);   
     });
-    axios.get("http://localhost:3001/api/starships").then((response) => {
+    axios.get(`${BASE_URL}starships`).then((response) => {
         setStarshipList(response.data);   
     });
   }, []);
 
+  //onChange event handler (if there any change in input)
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+    show(false, false, false, true);
+    //checks if input is not empty
+    if (searchInput.length > 0) {
+      axios.get(`${BASE_URL}people/${searchInput}`).then((response) => {
+        setPeopleFoundList(response.data);
+      });
+    }
+  };
+
+  //function that controls show / hide sections
+  const show = (people, planets, starships, personFound) => {
+    setShowPeople(people);
+    setShowPlanets(planets);
+    setShowStarships(starships);
+    setShowPeopleFound(personFound);
+  }
+
   return (
   <div className="App">
-    <button onClick={()=>{
-      
-    }}>fetch people</button>
+    <button onClick={() => show(true, false, false, false)}>fetch people</button>
+    <button onClick={() => show(false, true, false, false)}>fetch planets</button>
+    <button onClick={() => show(false, false, true, false)}>fetch starships</button>
+    <input type="search" placeholder="Search here" onChange={handleChange} value={searchInput} />
 
-    <button>fetch planets</button>
-    <button>fetch starships</button><br/>
-
+    {/*search bar section*/} 
     <div className="left">
-      {peopleList.map((value) => {
+      {showPeopleFound===true && peopleFoundList.map((value) => {
           return (
             <h6>{value.name}</h6>
           );     
       })}</div>
-      
-    <div className="App">
-      {planetList.map((value) => {
-          return (
-            <h6>{value.name}</h6>
-          );   
-      })}
-    </div>
 
-    <div className="right">
-      {starshipList.map((value) => {
+    {/*people list section*/}
+    <div className="left">
+      {showPeople===true && peopleList.map((value) => {
           return (
             <h6>{value.name}</h6>
           );     
+      })}</div>
+
+    {/*starship list section*/}
+    <div className="right">
+      {showStarships===true && starshipList.map((value) => {
+          return (
+            <h6>{value.name}</h6>
+          );     
+      })}
+    </div>
+    
+    {/*planet list section*/}
+    <div className="App">
+      {showPlanets===true && planetList.map((value) => {
+          return (
+            <h6>{value.name}</h6>
+          );   
       })}
     </div>
 

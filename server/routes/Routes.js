@@ -20,7 +20,7 @@ router.get("/people", async (req, res) => {
     }
 });
 
-//Get all planets
+//Get all planets from all pages
 router.get("/planets", async (req, res) => {
     try{
         const planetList = [];
@@ -37,7 +37,7 @@ router.get("/planets", async (req, res) => {
     }
 });
 
-//Get all starships
+//Get all starships from all pages
 router.get("/starships", async (req, res) => {
     try{
         const starshipList = [];
@@ -54,7 +54,7 @@ router.get("/starships", async (req, res) => {
     }
 });
 
-//Get people by search (result could be more than one page)
+//Get people by search (result could be more than one match and more than one page)
 router.get("/people/:str", async (req, res) => {
     try{
         const peopleList = [];
