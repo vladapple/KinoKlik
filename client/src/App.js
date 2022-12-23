@@ -66,7 +66,7 @@ function App() {
          <div>
             <br></br><br></br>
             <h3 class="sg-span-title">WELCOME TO DATA FETCHER APP!<br></br><br></br>
-             PRESS BUTTON...
+             PRESS BUTTONS ON THE LEFT...
             </h3>
          </div>
          ) : (<span></span>)
