@@ -6,6 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+body{
+  background-image: url("https://www.treehugger.com/thmb/_tir_XMOWKxK4kxfUWhdxZ7a_1Y=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2019__07__shutterstock_113278297-247408febef145a5a6f04eeff17e85f4.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -36,9 +41,50 @@
     transform: rotate(360deg);
   }
 }
- .left{
-  float: left;
+ .btn{
+  width:200px;
+  margin:10px 0px 10px 0px;
+  color: orange;
  }
- .right{
-  float: right;
+ .form-control{
+  width:200px;
+  margin:50px 0px 10px 0px;
  }
+ .btn:hover{
+  background-color: rgba(0, 0, 0, 0.681);
+ }
+ h1{
+  margin:10px 0px 40px 0px;
+  text-align: center;
+  color:aliceblue;
+  font-family: 'Orbitron';
+  color: orange;
+ }
+ .area{
+  overflow: auto;
+  font-family: 'Orbitron';
+  width:100%;
+ }
+
+ .container{
+  margin-top:80px;
+ }
+ .flex {
+  display: flex;
+  background-color: rgba(13, 15, 17, 0.6);
+  height: 500px;
+}
+.flex>div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+} 
+
+td{
+  font-size: small;
+  font-family: 'arial';
+}
+th{
+  font-size:medium;
+}

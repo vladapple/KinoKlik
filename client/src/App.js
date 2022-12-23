@@ -49,45 +49,165 @@ function App() {
   }
 
   return (
-  <div className="App">
-    <button onClick={() => show(true, false, false, false)}>fetch people</button>
-    <button onClick={() => show(false, true, false, false)}>fetch planets</button>
-    <button onClick={() => show(false, false, true, false)}>fetch starships</button>
-    <input type="search" placeholder="Search here" onChange={handleChange} value={searchInput} />
+  <div className="container">
+    <h1>Data Fetcher</h1>
 
-    {/*search bar section*/} 
-    <div className="left">
-      {showPeopleFound===true && peopleFoundList.map((value) => {
-          return (
-            <h6>{value.name}</h6>
-          );     
-      })}</div>
+    <div class="flex">
+      <div>
+        <button type="button" class="btn btn-dark" onClick={() => show(true, false, false, false)}>FETCH  PEOPLE</button><br></br>
+        <button type="button" class="btn btn-dark" onClick={() => show(false, true, false, false)}>FETCH PLANETS</button><br></br>
+        <button type="button" class="btn btn-dark" onClick={() => show(false, false, true, false)}>FETCH STARSHIPS</button><br></br>
+        <input type="text" class="form-control" placeholder="Search person by name" onChange={handleChange} value={searchInput} /><br></br>
+      </div>
 
-    {/*people list section*/}
-    <div className="left">
-      {showPeople===true && peopleList.map((value) => {
-          return (
-            <h6>{value.name}</h6>
-          );     
-      })}</div>
+      <div class="area">
 
-    {/*starship list section*/}
-    <div className="right">
-      {showStarships===true && starshipList.map((value) => {
-          return (
-            <h6>{value.name}</h6>
-          );     
-      })}
+        {showPeopleFound===false && showPeople===false && showStarships===false && showPlanets===false ? (
+         <div>
+            <br></br><br></br>
+            <h3 class="sg-span-title">WELCOME TO DATA FETCHER APP!<br></br><br></br>
+             PRESS BUTTON...
+            </h3>
+         </div>
+         ) : (<span></span>)
+        }
+
+        {/*search bar section*/} 
+        {showPeopleFound===true ? (
+         <div>
+          <table className="table table-striped table-bordered">
+				    <thead className="thead-dark">
+					    <tr>
+						    <th>Name</th>
+						    <th>Height</th>
+						    <th>Weight</th>
+                <th>Birth Year</th>
+                <th>Gender</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+          {peopleFoundList.map((value) => {
+            return (
+              <tr>
+						    <td>{value.name}</td>
+						    <td>{value.height}</td>
+						    <td>{value.mass}</td>
+                <td>{value.birth_year}</td>
+                <td>{value.gender}</td>
+					    </tr>
+            );     
+          })}
+            </tbody>
+			    </table>
+         </div>
+         ) : (<span></span>)
+        }
+        
+        {/*people list section*/}
+        {showPeople===true ? (
+         <div>
+          <table className="table table-striped table-bordered">
+				    <thead className="thead-dark">
+					    <tr>
+						    <th>Name</th>
+						    <th>Height</th>
+						    <th>Weight</th>
+                <th>Birth Year</th>
+                <th>Gender</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+          {peopleList.map((value) => {
+            return (
+              <tr>
+						    <td>{value.name}</td>
+						    <td>{value.height}</td>
+						    <td>{value.mass}</td>
+                <td>{value.birth_year}</td>
+                <td>{value.gender}</td>
+					    </tr>
+            );     
+          })}
+            </tbody>
+			    </table>
+         </div>
+         ) : (<span></span>)
+        }
+
+        {/*starship list section*/}
+        {showStarships===true ? (
+         <div>
+          <table className="table table-striped table-bordered">
+				    <thead className="thead-dark">
+					    <tr>
+						    <th>Name</th>
+                <th>Model</th>
+						    <th>Length</th>
+						    <th>Passengers</th>
+                <th>Cargo Capacity</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+          {starshipList.map((value) => {
+            return (
+              <tr>
+						    <td>{value.name}</td>
+                <td>{value.model}</td>
+						    <td>{value.length}</td>
+						    <td>{value.passengers}</td>
+                <td>{value.cargo_capacity}</td>
+					    </tr>
+            );     
+          })}
+            </tbody>
+			    </table>
+         </div>
+         ) : (<span></span>)
+        }
+
+        {/*planet list section*/}
+        {showPlanets===true ? (
+         <div>
+          <table className="table table-striped table-bordered">
+				    <thead className="thead-dark">
+					    <tr>
+						    <th>Name</th>
+						    <th>Rotation Period</th>
+						    <th>Diameter</th>
+                <th>Gravity</th>
+                <th>Terrain</th>
+                <th>Population</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+          {planetList.map((value) => {
+            return (
+              <tr>
+						    <td>{value.name}</td>
+						    <td>{value.rotation_period}</td>
+						    <td>{value.diameter}</td>
+                <td>{value.gravity}</td>
+                <td>{value.terrain}</td>
+                <td>{value.population}</td>
+					    </tr>
+            );     
+          })}
+            </tbody>
+			    </table>
+         </div>
+         ) : (<span></span>)
+        }
+
+      </div>
     </div>
     
-    {/*planet list section*/}
-    <div className="App">
-      {showPlanets===true && planetList.map((value) => {
-          return (
-            <h6>{value.name}</h6>
-          );   
-      })}
-    </div>
+    
+
+    
+
+    
+    
+    
 
   </div>
   );
