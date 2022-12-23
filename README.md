@@ -1,6 +1,7 @@
 # KinoKlik
 This mini project allows user to fetch the list of people, 
 planets and starships from external API wrapped in the backend. 
+External Link: https://swapi.dev/documentation
 
 User can also search for person using search bar. 
 
